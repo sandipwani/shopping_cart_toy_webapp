@@ -1,0 +1,22 @@
+<div style="text-align: center;">
+<h1>This is Cart Product List</h1>
+<table border="1px solid">
+    <thead>
+        <th>Product_id</th>
+        <th>Product_name</th>
+        <th>Product_price</th>
+        <th>Product_quantity</th>
+    </thead>
+
+    <tbody>
+        {{ range .}}
+            <tr>
+                <td>{{ .ProductId}}</td>
+                <td>{{ .ProductName }}</td>
+                <td>{{ .ProductPrice }}</td>
+                <td>{{ .ProductQuantity }}</td>
+            </tr>
+        {{end}}
+    </tbody>
+</table>
+</div>

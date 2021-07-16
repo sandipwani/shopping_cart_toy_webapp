@@ -1,0 +1,19 @@
+<div style="text-align: center;">
+<h1>This is the Available Selling Product List</h1>
+<table border="1px solid">
+    <thead>
+        <th>Product_id</th>
+        <th>Product_name</th>
+        <th>Product_price</th>
+    </thead>
+
+    <tbody>
+        {{ range .}}
+            <tr>
+                <td>{{ .ProdId}}</td>
+                <td>{{ .ProdName}}</td>
+                <td>{{ .ProdPrice}}</td>
+            </tr>
+        {{end}}
+    </tbody>
+</table>
