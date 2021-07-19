@@ -2,7 +2,6 @@ package Module
 
 import (
 	"encoding/json"
-	"fmt"
 	"html/template"
 	"log"
 
@@ -24,10 +23,6 @@ func AddToCart(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
-	}
-
-	if p.ProductId < 101 && p.ProductId > 110 {
-		fmt.Println("Please give the ProductId in range between 101-110 ***")
 	}
 
 	var product_info Database.ProductCart
