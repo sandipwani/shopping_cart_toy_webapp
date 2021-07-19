@@ -12,7 +12,8 @@ func main() {
 
 	route := mux.NewRouter()
 
-	route.HandleFunc("/", Module.ProductInShop).Methods("GET")
+	route.HandleFunc("/shop", Module.ProductInShop).Methods("GET")
+	route.HandleFunc("/shop/add", Module.AddToShop).Methods("POST")
 	route.HandleFunc("/cart", Module.GetCartitems).Methods("GET")
 	route.HandleFunc("/cart/add", Module.AddToCart).Methods("POST")
 	route.HandleFunc("/cart/update", Module.UpdateCartitem).Methods("PUT")
