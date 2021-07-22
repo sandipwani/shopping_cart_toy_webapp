@@ -30,7 +30,7 @@ func (s *Srv) DeleteCartitem(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("html file reading err : ", err)
 		return
 	}
-	t.Execute(w, productcart)
 
+	t.Execute(w, productcart)
 	w.WriteHeader(http.StatusOK)
 }

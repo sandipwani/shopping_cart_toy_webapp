@@ -28,13 +28,13 @@ func (s *Srv) AddToCart(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Printf("failed to retrive product from shop : %v", err)
 	}
+
 	err = s.Service.InsertCartProduct(p.ProductId, product_info.ProductName, product_info.ProductPrice, p.ProductQuantity)
 	if err != nil {
 		log.Printf("failed to insert product into cart : %v", err)
 	}
 
 	productinfo := structure.ProductCart{ProductId: p.ProductId, ProductName: product_info.ProductName, ProductPrice: product_info.ProductPrice, ProductQuantity: p.ProductQuantity}
-
 	t, err := template.ParseFiles("view/add.html")
 	if err != nil {
 		log.Fatal("html file reading err : ", err)

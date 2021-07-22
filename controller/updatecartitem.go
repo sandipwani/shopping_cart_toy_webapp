@@ -36,7 +36,7 @@ func (s *Srv) UpdateCartitem(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("html file reading err : ", err)
 		return
 	}
-	t.Execute(w, productitem)
 
+	t.Execute(w, productitem)
 	w.WriteHeader(http.StatusOK)
 }

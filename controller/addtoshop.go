@@ -25,8 +25,7 @@ func (s *Srv) AddToShop(w http.ResponseWriter, r *http.Request) {
 
 	err = s.Service.InsertShopProduct(p.ProdId, p.ProdName, p.ProdPrice)
 	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		panic(err)
+		log.Printf("failed to insert product into shop table : %v", err)
 	}
 
 	productinfo := structure.Product{ProdId: p.ProdId, ProdName: p.ProdName, ProdPrice: p.ProdPrice}
@@ -36,7 +35,7 @@ func (s *Srv) AddToShop(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("html file reading err : ", err)
 		return
 	}
-	t.Execute(w, productinfo)
 
+	t.Execute(w, productinfo)
 	w.WriteHeader(http.StatusOK)
 }
