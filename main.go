@@ -1,23 +1,46 @@
 package main
 
 import (
+	"home/webonise/go/src/shopping_cart_app/containers"
+	"home/webonise/go/src/shopping_cart_app/database"
+	"log"
 	"net/http"
 
-	"home/webonise/go/src/shopping_cart_app/Module"
-
 	"github.com/gorilla/mux"
+	_ "github.com/lib/pq"
+)
+
+const (
+	host     = "localhost"
+	port     = "5432"
+	user     = "postgres"
+	password = "s"
+	dbname   = "pgdata"
 )
 
 func main() {
 
-	route := mux.NewRouter()
+	d := &database.PsqlIntializer{
+		DBConfig: &database.DBConfig{
+			Host:     host,
+			Port:     port,
+			User:     user,
+			Password: password,
+			Dbname:   dbname,
+		},
+	}
 
-	route.HandleFunc("/shop", Module.ProductInShop).Methods("GET")
-	route.HandleFunc("/shop/add", Module.AddToShop).Methods("POST")
-	route.HandleFunc("/cart", Module.GetCartitems).Methods("GET")
-	route.HandleFunc("/cart/add", Module.AddToCart).Methods("POST")
-	route.HandleFunc("/cart/update", Module.UpdateCartitem).Methods("PUT")
-	route.HandleFunc("/cart/delete", Module.DeleteCartitem).Methods("DELETE")
+	if err := d.InitializeConnection(); err != nil {
+		log.Panic(err)
+	}
 
-	http.ListenAndServe(":8888", route)
+	srv := &containers.Server{
+		Router:   mux.NewRouter(),
+		MasterDB: d.Db,
+	}
+
+	srv.InitializeServer()
+	log.Printf("Starting server on the port 8888...")
+
+	log.Fatal(http.ListenAndServe(":8888", srv.Router))
 }
