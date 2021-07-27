@@ -7,10 +7,10 @@ import (
 )
 
 type ShopProductProvider interface {
-	ProductInShop(w http.ResponseWriter, r *http.Request)
+	ShowShopProducts(w http.ResponseWriter, r *http.Request)
 }
 
-func (s *Srv) ProductInShop(w http.ResponseWriter, r *http.Request) {
+func (s *Srv) ShowShopProducts(w http.ResponseWriter, r *http.Request) {
 
 	productlist, err := s.Service.RetriveShopProducts()
 	if err != nil {

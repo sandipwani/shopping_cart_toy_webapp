@@ -9,10 +9,10 @@ import (
 )
 
 type UpdateCartProvider interface {
-	UpdateCartitem(w http.ResponseWriter, r *http.Request)
+	UpdateToCart(w http.ResponseWriter, r *http.Request)
 }
 
-func (s *Srv) UpdateCartitem(w http.ResponseWriter, r *http.Request) {
+func (s *Srv) UpdateToCart(w http.ResponseWriter, r *http.Request) {
 
 	var p structure.ProductCart
 	err := json.NewDecoder(r.Body).Decode(&p)
@@ -28,7 +28,7 @@ func (s *Srv) UpdateCartitem(w http.ResponseWriter, r *http.Request) {
 
 	productitem, err := s.Service.RetriveCartProductByID(p.ProductId)
 	if err != nil {
-		log.Fatal(err)
+		log.Printf("failed to fetched the product data : %v",err)
 	}
 
 	t, err := template.ParseFiles("view/update.html")

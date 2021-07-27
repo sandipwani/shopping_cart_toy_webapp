@@ -8,10 +8,10 @@ import (
 )
 
 type DeleteShopProvider interface {
-	DeleteShopitem(w http.ResponseWriter, r *http.Request)
+	DeleteFromShop(w http.ResponseWriter, r *http.Request)
 }
 
-func (s *Srv) DeleteShopitem(w http.ResponseWriter, r *http.Request) {
+func (s *Srv) DeleteFromShop(w http.ResponseWriter, r *http.Request) {
 
 	id, _ := strconv.Atoi(r.URL.Query().Get("id"))
 

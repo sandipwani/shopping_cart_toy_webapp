@@ -12,7 +12,7 @@ type ProductAccessor interface {
 	RetriveShopProducts() (productlist []structure.Product, err error)
 	RetriveShopProductByID(productid int) (product_info structure.ProductCart, err error)
 	DeleteShopProduct(productid int) error
-	UpdateShopProduct(productid int, productprice float64 ) error
+	UpdateShopProduct(productid int, productprice float64) error
 }
 
 func (w *WriteDbAccess) InsertShopProduct(productid int, productname string, productprice float64) error {
@@ -24,7 +24,7 @@ func (w *WriteDbAccess) InsertShopProduct(productid int, productname string, pro
 func (w *WriteDbAccess) RetriveShopProducts() (productlist []structure.Product, err error) {
 	rows, err := w.Db.Query("SELECT *FROM product;")
 	if err != nil {
-		log.Printf("failed to fetch products from shop %v", err)
+		log.Printf("failed to fetch products from shop : %v", err)
 	}
 
 	defer rows.Close()
@@ -50,7 +50,7 @@ func (w *WriteDbAccess) DeleteShopProduct(productid int) error {
 	return err
 }
 
-func (w *WriteDbAccess) UpdateShopProduct(productid int, productprice float64 ) error {
+func (w *WriteDbAccess) UpdateShopProduct(productid int, productprice float64) error {
 	sqlStatement := `UPDATE product SET prod_price = $2 WHERE prod_id = $1;`
 	_, err := w.Db.Exec(sqlStatement, productid, productprice)
 	return err

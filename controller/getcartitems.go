@@ -7,10 +7,10 @@ import (
 )
 
 type GetCartProvider interface {
-	GetCartitems(w http.ResponseWriter, r *http.Request)
+	ShowCartProducts(w http.ResponseWriter, r *http.Request)
 }
 
-func (s *Srv) GetCartitems(w http.ResponseWriter, r *http.Request) {
+func (s *Srv) ShowCartProducts(w http.ResponseWriter, r *http.Request) {
 
 	productlist, err := s.Service.RetriveCartProducts()
 	if err != nil {

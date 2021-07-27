@@ -8,14 +8,14 @@ import (
 )
 
 type DeleteCartProvider interface {
-	DeleteCartitem(w http.ResponseWriter, r *http.Request)
+	DeleteFromCart(w http.ResponseWriter, r *http.Request)
 }
 
-func (s *Srv) DeleteCartitem(w http.ResponseWriter, r *http.Request) {
+func (s *Srv) DeleteFromCart(w http.ResponseWriter, r *http.Request) {
 
 	id, _ := strconv.Atoi(r.URL.Query().Get("id"))
 
-	productcart, err := s.Service.RetriveCartProduct(id)
+	productcart, err := s.Service.RetriveCartProductByID(id)
 	if err != nil {
 		log.Printf("failed to fetch product record from cart : %v", err)
 	}

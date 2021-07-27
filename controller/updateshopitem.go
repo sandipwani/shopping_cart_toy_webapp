@@ -9,10 +9,10 @@ import (
 )
 
 type UpdateShopProvider interface {
-	UpdateShopitem(w http.ResponseWriter, r *http.Request)
+	UpdateToShop(w http.ResponseWriter, r *http.Request)
 }
 
-func (s *Srv) UpdateShopitem(w http.ResponseWriter, r *http.Request) {
+func (s *Srv) UpdateToShop(w http.ResponseWriter, r *http.Request) {
 
 	var p structure.Product
 	err := json.NewDecoder(r.Body).Decode(&p)

@@ -13,12 +13,13 @@ type SrvRouter struct {
 
 func (r *SrvRouter) InitilizeRoutes() {
 
-	r.Router.HandleFunc("/shop", r.Controller.ProductInShop).Methods("GET")
+	r.Router.HandleFunc("/shop", r.Controller.ShowShopProducts).Methods("GET")
 	r.Router.HandleFunc("/shop/add", r.Controller.AddToShop).Methods("POST")
-	r.Router.HandleFunc("/shop/update", r.Controller.UpdateShopitem).Methods("PUT")
-	r.Router.HandleFunc("/shop/delete", r.Controller.DeleteShopitem).Methods("DELETE")
-	r.Router.HandleFunc("/cart", r.Controller.GetCartitems).Methods("GET")
+	r.Router.HandleFunc("/shop/update", r.Controller.UpdateToShop).Methods("PUT")
+	r.Router.HandleFunc("/shop/delete", r.Controller.DeleteFromShop).Methods("DELETE")
+	
+	r.Router.HandleFunc("/cart", r.Controller.ShowCartProducts).Methods("GET")
 	r.Router.HandleFunc("/cart/add", r.Controller.AddToCart).Methods("POST")
-	r.Router.HandleFunc("/cart/update", r.Controller.UpdateCartitem).Methods("PUT")
-	r.Router.HandleFunc("/cart/delete", r.Controller.DeleteCartitem).Methods("DELETE")
+	r.Router.HandleFunc("/cart/update", r.Controller.UpdateToCart).Methods("PUT")
+	r.Router.HandleFunc("/cart/delete", r.Controller.DeleteFromCart).Methods("DELETE")
 }
