@@ -9,6 +9,8 @@ type Srv struct {
 type SrvController interface {
 	AddCartProvider
 	AddShopProvider
+	UpdateShopProvider
+	DeleteShopProvider
 	DeleteCartProvider
 	GetCartProvider
 	ShopProductProvider
